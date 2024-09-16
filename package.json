@@ -1,0 +1,27 @@
+{
+  "name": "strapi-provider-upload-azure-sa",
+  "version": "0.0.0",
+  "description": "Azure Blob Storage provider for Strapi v4 in TypeScript",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build"
+  },
+  "keywords": [
+    "strapi",
+    "provider",
+    "upload",
+    "azure",
+    "typescript"
+  ],
+  "author": "c1sar",
+  "license": "MIT",
+  "dependencies": {
+    "@azure/storage-blob": "^12.24.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.5.5",
+    "typescript": "^5.6.2"
+  }
+}
