@@ -1,6 +1,6 @@
 {
   "name": "strapi-provider-upload-azure-sa",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Azure Blob Storage provider for Strapi v4 in TypeScript",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
