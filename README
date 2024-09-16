@@ -42,7 +42,7 @@ A custom upload provider for Strapi v4 that allows you to upload files to Azure 
 Install the provider using npm:
 
 ```bash
-npm install strapi-provider-upload-azure-ts
+npm install strapi-provider-upload-azure-sa
 ```
 
 
@@ -50,14 +50,14 @@ npm install strapi-provider-upload-azure-ts
 Install the provider using yarn:
 
 ```bash
-yarn add strapi-provider-upload-azure-ts
+yarn add strapi-provider-upload-azure-sa
 ```
 
 ### Using pnpm
 Install the provider using pnpm:
 
 ```bash
-pnpm add strapi-provider-upload-azure-ts
+pnpm add strapi-provider-upload-azure-sa
 ```
 
 ## Configuration
@@ -86,7 +86,7 @@ Create or update the `config/plugins.js` or `config/plugins.ts` file in your Str
 module.exports = ({ env }) => ({
   upload: {
     config: {
-      provider: 'strapi-provider-azure-storage-account',
+      provider: 'strapi-provider-upload-azure-sa',
       providerOptions: {
         account: env('AZURE_ACCOUNT_NAME'),
         accountKey: env('AZURE_ACCOUNT_KEY'),
