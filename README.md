@@ -1,6 +1,6 @@
 # Strapi Upload Provider for Azure Blob Storage (TypeScript)
 
-A custom upload provider for Strapi v4 that allows you to upload files to Azure Blob Storage using TypeScript. This provider supports uploading, streaming, and deleting files, and is compatible with the latest Azure SDKs.
+A upload provider for Strapi v4 that allows you to upload files to Azure Blob Storage using TypeScript. This provider supports uploading, streaming, and deleting files, and is compatible with the latest Azure SDKs.
 
 ## Table of Contents
 
