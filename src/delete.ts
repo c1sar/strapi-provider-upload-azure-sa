@@ -1,20 +1,24 @@
-import { Config, File } from './types';
-import { BlobServiceClient } from '@azure/storage-blob';
-import { getFileName, trimParam } from './utils';
-import * as fs from 'fs';
+import { Config, File } from "./types";
+import { BlobServiceClient } from "@azure/storage-blob";
+import { getFileName, trimParam } from "./utils";
+import * as fs from "fs";
 
 export async function handleDelete(
   config: Config,
   blobSvcClient: BlobServiceClient,
-  file: File
+  file: File,
 ): Promise<void> {
-  const containerClient = blobSvcClient.getContainerClient(trimParam(config.containerName));
-  const client = containerClient.getBlobClient(getFileName(config.defaultPath, file));
+  const containerClient = blobSvcClient.getContainerClient(
+    trimParam(config.containerName),
+  );
+  const client = containerClient.getBlobClient(
+    getFileName(config.defaultPath, file),
+  );
 
   try {
     await client.delete();
   } catch (err: any) {
-    if (err.code !== 'BlobNotFound') {
+    if (err.code !== "BlobNotFound") {
       throw err;
     }
   }
@@ -24,7 +28,7 @@ export async function handleDelete(
     try {
       fs.unlinkSync(tmpFilePath);
     } catch (err: any) {
-      if (err.code !== 'ENOENT') {
+      if (err.code !== "ENOENT") {
         throw err;
       }
     }

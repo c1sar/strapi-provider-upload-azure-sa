@@ -1,6 +1,6 @@
-import { Config, File } from './types';
-import { BlobServiceClient } from '@azure/storage-blob';
-import { getServiceBaseUrl, getFileName, trimParam } from './utils';
+import { Config, File } from "./types";
+import { BlobServiceClient } from "@azure/storage-blob";
+import { getServiceBaseUrl, getFileName, trimParam } from "./utils";
 
 const uploadOptions = {
   bufferSize: 4 * 1024 * 1024,
@@ -10,11 +10,15 @@ const uploadOptions = {
 export async function handleUpload(
   config: Config,
   blobSvcClient: BlobServiceClient,
-  file: File
+  file: File,
 ): Promise<void> {
   const serviceBaseURL = getServiceBaseUrl(config);
-  const containerClient = blobSvcClient.getContainerClient(trimParam(config.containerName));
-  const client = containerClient.getBlockBlobClient(getFileName(config.defaultPath, file));
+  const containerClient = blobSvcClient.getContainerClient(
+    trimParam(config.containerName),
+  );
+  const client = containerClient.getBlockBlobClient(
+    getFileName(config.defaultPath, file),
+  );
   const options = {
     blobHTTPHeaders: {
       blobContentType: file.mime,
@@ -29,9 +33,9 @@ export async function handleUpload(
   if (
     file.url.includes(`/${config.containerName}/`) &&
     config.removeCN &&
-    config.removeCN === 'true'
+    config.removeCN === "true"
   ) {
-    file.url = file.url.replace(`/${config.containerName}/`, '/');
+    file.url = file.url.replace(`/${config.containerName}/`, "/");
   }
 
   if (file.buffer) {
@@ -43,14 +47,14 @@ export async function handleUpload(
       file.stream,
       uploadOptions.bufferSize,
       uploadOptions.maxBuffers,
-      options
+      options,
     );
 
     // Close the stream to release the file handle
-    if (typeof file.stream.destroy === 'function') {
+    if (typeof file.stream.destroy === "function") {
       file.stream.destroy();
     }
   } else {
-    throw new Error('File data is not available for upload.');
+    throw new Error("File data is not available for upload.");
   }
 }

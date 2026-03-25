@@ -1,4 +1,4 @@
-import { Readable } from 'stream';
+import { Readable } from "stream";
 
 export interface Config {
   account: string;
@@ -9,6 +9,7 @@ export interface Config {
   defaultPath: string;
   cdnBaseURL?: string;
   defaultCacheControl?: string;
+  fileSizeLimit?: number;
   removeCN?: string;
 }
 
@@ -17,7 +18,7 @@ export interface File {
   hash: string;
   ext: string;
   mime: string;
-  size?: number;
+  size: number;
   buffer?: Buffer;
   stream?: Readable;
   path?: string;

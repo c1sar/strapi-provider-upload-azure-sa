@@ -51,6 +51,8 @@ module.exports = {
     },
   },
   init: (config: Config) => {
+    const fileSizeLimit = config.fileSizeLimit;
+
     const blobSvcClient = makeBlobServiceClient(config);
     return {
       upload(file: File) {
@@ -61,6 +63,14 @@ module.exports = {
       },
       delete(file: File) {
         return handleDelete(config, blobSvcClient, file);
+      },
+      checkFileSize(file: File, { sizeLimit }: { sizeLimit: number }): void {
+        const limit = fileSizeLimit ?? sizeLimit;
+        if (limit && file.size * 1000 > limit) {
+          throw new Error(
+            `File size (${(file.size / 1000).toFixed(2)}MB) exceeds the limit of ${(limit / 1000000).toFixed(2)}MB`,
+          );
+        }
       },
     };
   },
